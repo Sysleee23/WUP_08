@@ -34,3 +34,46 @@ predict(simp,new,se.fit=TRUE)
 ```
 ## Surely there is another variable that can better predict LENGTH than NECK. Find one and compare its performance to that of neck by it value of Adjusted-Rsquared (bigger is better).
 
+```{r}
+chesty <- lm(LENGTH~CHEST,data=bears)
+plot(LENGTH~CHEST,data=bears)
+abline(chesty)
+summary.lm(chesty)
+```
+
+the adjested R-square for the model (CHEST) IS 0.79; THE MODEL FOR NECK  had an adjested R-square of 0.75. so fvar the best model is the one based on CHEST.
+
+```{r}
+new<- data.frame(CHEST=c(17,22,26))
+predict(chesty,new)
+predict(chesty,new,se.fit=TRUE)
+```
+
+```{r}
+weight <- lm(LENGTH~WEIGHT,data=bears)
+plot(LENGTH~WEIGHT,data=bears)
+abline(weight)
+summary.lm(weight)
+```
+
+```{r}
+new<- data.frame(WEIGHT=c(17,22,26))
+predict(weight,new)
+predict(weight,new,se.fit=TRUE)
+```
+
+```{r}
+simp <- lm(LENGTH~HEADWTH,data=bears)
+plot(LENGTH~HEADWTH,data=bears)
+abline(simp)
+summary.lm(simp)
+```
+
+```{r}
+simp <- lm(LENGTH~HEADLEN,data=bears)
+plot(LENGTH~HEADLEN,data=bears)
+abline(simp)
+summary.lm(simp)
+```
+
+Afer putting in each data set i have come to the conclution that NECK has the latgest data set and as it says bigger is better.
